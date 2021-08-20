@@ -1,0 +1,18 @@
+public static void main(String[] args) throws ClassNotFoundException, SQLException {
+			String url = "jdbc:oracle:thin:@localhost:1521/orcl";
+			String username = "ssr";
+			String password = "Shilpasm";
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Connection con = DriverManager.getConnection(url,username,password);
+			System.out.println("Connected...!");
+			Statement stmt = con.createStatement();
+			String u1 = "update tab1 set name = 'Shilpa' where id=3";
+			stmt.executeUpdate(u1);
+			System.out.println("Record Updated...!");
+			ResultSet rs = stmt.executeQuery("select * from tab1");
+			while(rs.next()){
+				System.out.println(rs.getString("id")+' '+rs.getString("name") + ' ' +rs.getString("DOB"));
+			}
+			con.close();
+
+	}
